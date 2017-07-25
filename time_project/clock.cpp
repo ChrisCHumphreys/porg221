@@ -30,6 +30,15 @@ void c0(){
     line6 += " XXX  ";
 }
 
+void c1(){
+	line1 += " X ";
+	line2 += "XX ";
+	line3 += " X ";
+	line4 += " X ";
+	line5 += " X ";
+	line6 += "XXX";
+
+
 void copyBigChar(char n){
     if (n == '0')
         c0();
