@@ -37,7 +37,7 @@ void c1(){
 	line4 += " X ";
 	line5 += " X ";
 	line6 += "XXX";
-
+}
 
 void copyBigChar(char n){
     if (n == '0')
