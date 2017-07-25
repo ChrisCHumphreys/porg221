@@ -89,10 +89,16 @@ void showMenu(){
 
 int main(){
     string mode = "normal";
+	char menuSelection = 'F';
 		    
     c0(); c1(); 
     showLines();
 //    clearLines();
-	showMenu();
+	while ( menuSelection != 'Q'){
+		showMenu();
+		cin >> menuSelection;
+	}
 	return 0;
-}						
+}				
+
+// used http://www.pcs.cnu.edu/~dgame/cs230/resources/wk5/senLoop.html for help making sentinel loop
