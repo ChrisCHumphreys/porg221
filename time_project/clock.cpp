@@ -77,11 +77,22 @@ string getTime(){  // gets the time of day as a string - formatted hh:mm:ss
     return ss.str();
 }
 
+void showMenu(){
+	cout << "MENU" << endl;
+	cout << "T - Time" << endl;
+	cout << "N - 0-9" << endl;
+	cout << "B - Big Mode On" << endl;
+	cout << "E - Emoji Mode On" << endl;
+	cout << "S - Normal Text Mode" << endl;
+	cout << "Q - Quit" << endl;
+}
+
 int main(){
     string mode = "normal";
 		    
     c0(); c1(); 
     showLines();
-    clearLines();
-	// menu code here
+//    clearLines();
+	showMenu();
+	return 0;
 }						
