@@ -94,9 +94,31 @@ int main(){
     c0(); c1(); 
     showLines();
 //    clearLines();
-	while ( menuSelection != 'Q'){
+	while ( menuSelection != 'Q' && menuSelection != 'q'){
 		showMenu();
+		cout << endl;
 		cin >> menuSelection;
+		if ( menuSelection == 'T' || menuSelection == 't'){
+			cout << "In the future this will print the time." << endl << endl;
+		}
+		else if ( menuSelection == 'N' || menuSelection == 'n'){
+			cout << "In the future this will change to 0-9 mode." << endl << endl;	
+		}
+		else if ( menuSelection == 'B' || menuSelection == 'b'){
+			cout << "In the future this will change to Big mode." << endl << endl;	
+		}
+		else if ( menuSelection == 'E' || menuSelection == 'e'){
+			cout << "In the future this will change to Emoji mode." << endl << endl;	
+		}
+		else if ( menuSelection == 'S' || menuSelection == 's'){
+			cout << "In the future this will change to Normal mode." << endl << endl;	
+		}
+		else if ( menuSelection == 'Q' || menuSelection == 'q'){
+			cout << "Thank you for using the clock app." << endl << endl;
+		}
+		else {
+			cout << "Invalid Selection: Please try again." << endl << endl;
+		}
 	}
 	return 0;
 }				
