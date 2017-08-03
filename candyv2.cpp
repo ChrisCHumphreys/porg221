@@ -1,10 +1,11 @@
-// Chris Humphreys - Partner Denver Crittenden
-// 7/14/17
+// Chris Humphreys - Denver Crittenden
+// 8/02/17
 // Candy Program Assignment - Offers customers a list of candies
 //      for purchase.  After choosing quantities, customer is 
 //      given total with tax, and then asked for payment.  Finally,
 //      program tells customer how much change they are due, and in
-//      what denomination.
+//      what denomination.  UPDATE - now gives the ability to pick from
+//      either a regular or holiday menu.
 
 #include <iostream>
 #include <iomanip>

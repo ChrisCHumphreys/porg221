@@ -1,4 +1,4 @@
-// Denver Crittendon - Partner Chris Humphreys
+// Denver Crittendon - Chris Humphreys
 // 8/1/17
 // Crazier Candy Club Project 3
 
@@ -12,11 +12,17 @@ using namespace std;
 // by user choice and then loops through displaying the appropriate file's menu text
 // alerts the user if the file could not be opened properly.
 // written by Denver
+
 void menuChoice(){
 
 string name;
 double price;
 string menuChoice;
+string nameArray[9];
+double priceArray[9];
+int buyArray[9];
+int counter = 0;
+
 ifstream myfile;
     cout << "Welcome to the Crazy Candy Club!" << endl;
     cout << "Would you like the normal or holiday menu? ";
@@ -36,13 +42,27 @@ ifstream myfile;
         getline(myfile,name);
         myfile >> price;
         myfile.ignore(10,'\n');
-
+	
         if (myfile){
             cout << left << setw(30) << name << right << setw(3) << "$" << right << setw(6) << price << endl;
+			// Following two lines add the price and names to the parallel arrays.
+			priceArray[counter] = price;
+			nameArray[counter] = name;
+			counter++;
         }
     }
     myfile.close();
+
+	cout << endl << "Place order:" << endl << endl;
+
+	for (int i = 0; i < counter; i++){
+		cout << "How many of the " << nameArray[i] << " ($";
+		cout << priceArray[i] << " each): ";
+		cin >> buyArray[i];
+	}
+	
 }
+
 int main(){
     menuChoice();
 }
@@ -156,4 +176,4 @@ void changeMaker(double cost, double received){
     cout << left << setw(4) << nNickels << right << setw(3) << " - " << "nickels" << endl;
     cout << left << setw(4) << nPennies << right << setw(3) << " - " << "pennies" << endl;
 }
-
+*/
