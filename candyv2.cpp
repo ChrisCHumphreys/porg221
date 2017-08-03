@@ -1,60 +1,29 @@
-// Denver Crittendon - Partner Chris Humphreys
-// 8/1/17
-// Crazier Candy Club Project 3
+// Chris Humphreys - Partner Denver Crittenden
+// 7/14/17
+// Candy Program Assignment - Offers customers a list of candies
+//      for purchase.  After choosing quantities, customer is 
+//      given total with tax, and then asked for payment.  Finally,
+//      program tells customer how much change they are due, and in
+//      what denomination.
 
 #include <iostream>
-#include <fstream>
 #include <iomanip>
 using namespace std;
 
+void changeMaker(double cost, double recieved);
+void storeFront();
 
-// part 1 of the assignment is this function. It determines which menu to display
-// by user choice and then loops through displaying the appropriate file's menu text
-// alerts the user if the file could not be opened properly.
-// written by Denver
-void menuChoice(){
-
-string name;
-double price;
-string menuChoice;
-ifstream myfile;
-    cout << "Welcome to the Crazy Candy Club!" << endl;
-    cout << "Would you like the normal or holiday menu? ";
-    cin >> menuChoice;
-    if (menuChoice == "normal"){
-        myfile.open("normal_menu.txt");
-        cout << '\n' << "NORMAL MENU:" << endl;
-    }
-    else if (menuChoice == "holiday"){
-        myfile.open("holiday_menu.txt");
-        cout << '\n' << "HOLIDAY MENU:" << endl;
-    }
-    else{
-        cout << "File could not be opened.";
-    }
-    while(myfile){
-        getline(myfile,name);
-        myfile >> price;
-        myfile.ignore(10,'\n');
-
-        if (myfile){
-            cout << left << setw(30) << name << right << setw(3) << "$" << right << setw(6) << price << endl;
-        }
-    }
-    myfile.close();
+int main()
+{
+    storeFront();
+    return 0;
 }
-int main(){
-    menuChoice();
-}
-
-/* The following is the code from the first candy club for us to use as needed.  It is all commented out here to avoid compiling errors.
-
 
 void storeFront(){
-     I wrote a good portion of this personally working ahead by myself. Chris and I went over it and made it better
+    /* I wrote a good portion of this personally working ahead by myself. Chris and I went over it and made it better
        and cleaned it up into the easily readible format it is in now.
        Chris put this into the void function and added constants for candy price
-       I added constants for candy names
+       I added constants for candy names*/
     
     // constants
     const double CANDY1_PRICE = 5.49;
@@ -118,9 +87,9 @@ void storeFront(){
 }
 
 void changeMaker(double cost, double received){ 
-     chris wrote this while I was next to him and we both discussed how it works and why
+    /* chris wrote this while I was next to him and we both discussed how it works and why
        does the math portion taking our change amount and converting it into 
-       monetary denominations.
+       monetary denominations.*/
     
     double change = received - cost;
     cout << "The amount of change due is: $" << change << endl;
