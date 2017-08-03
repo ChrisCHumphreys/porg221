@@ -22,6 +22,9 @@ string nameArray[9];
 double priceArray[9];
 int buyArray[9];
 int counter = 0;
+int total = 0;
+int totalItems = 0;
+const double TAX = .09;
 
 ifstream myfile;
     cout << "Welcome to the Crazy Candy Club!" << endl;
@@ -60,6 +63,25 @@ ifstream myfile;
 		cout << priceArray[i] << " each): ";
 		cin >> buyArray[i];
 	}
+	
+    cout << endl << "Items Ordered : " << endl;
+
+	for (int i = 0; i < counter; i++){
+		cout << right << setw(30) << nameArray[i] << " : x " <<
+		left << setw(2) << buyArray[i] << right << setw(10) << " items = $ " << right << setw(6) << buyArray[i]*priceArray[i] << endl;
+		total += (priceArray[i] * buyArray[i]);
+		totalItems += buyArray[i];
+	}
+
+    cout << "TOTAL:" << right << setw(42) << "$ " << right << setw(6) << total << endl;
+    // sets decimal point to 2, ensuring $ format is followed correctly in the calculations.
+    cout << "TAX (" << TAX*100 << "%):" << right << setw(36) << "$ " << right << setw(6) << total*TAX << endl;
+    cout << "======================================================" << endl;
+    double grandTotal = total*TAX + total;
+	cout << grandTotal;
+    // cout << "GRAND TOTAL:" << right << setw(24) << candy1Bought + candy2Bought + candy3Bought + candy4Bought + candy5Bought 
+    // << "  items" << right <<setw(5) << "$ " << right << setw(6) << grandTotal << endl;
+	
 	
 }
 
