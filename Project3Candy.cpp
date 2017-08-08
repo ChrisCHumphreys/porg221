@@ -7,6 +7,49 @@
 #include <iomanip>
 using namespace std;
 
+void orderTotals(int total, int totalItems, double &grandTotal){
+    // takes in order total and items, displays info.
+    // Written by Denver, put into function and
+    // commented by Chris.
+
+    // tax rate
+    const double TAX = .09;
+
+    // determines the grand total.
+    grandTotal = total*TAX + total;
+
+    // displays on screen
+    cout << fixed << setprecision(2) << "TOTAL:" << right << setw(42) << "$ " << right << setw(6) << total << endl;
+    cout << "TAX (" << TAX*100 << "%):" << right << setw(36) << "$ " << right << setw(6) << total*TAX+.005 << endl;
+    cout << "======================================================" << endl;
+    cout << "GRAND TOTAL:" << right << setw(24) << totalItems << "  items" << right << setw(4) << "$" << right << setw(7) << grandTotal;
+
+}
+
+void placeOrder(int &counter, string nameArray[], int buyArray[], double priceArray[],
+                int &totalItems, int &total){
+  // Takes input from user about how many items are being purchased.
+  // Then places items, number bought, and descriptions into parrallel arrays
+  // then displays that info on screen.  Written by Chris.
+
+    cout << endl << "Place order:" << endl << endl;
+
+    for (int i = 0; i < counter; i++){
+        cout << "How many of the " << nameArray[i] << " ($";
+        cout << priceArray[i] << " each): ";
+        cin >> buyArray[i];
+    }
+
+    cout << endl << "Items Ordered : " << endl;
+
+    for (int i = 0; i < counter; i++){
+        cout << right << setw(30) << nameArray[i] << " : x " <<
+        left << setw(2) << buyArray[i] << right << setw(10) << " items = $ " << right << setw(6) << buyArray[i]*priceArray[i] << endl;
+        total += (priceArray[i] * buyArray[i]);
+        totalItems += buyArray[i];
+    }
+}
+
 void changeMaker(double cost, double received){
 //chris wrote this while I was next to him. we both discussed how it works and why
 //does the math portion taking our change amount and converting it into
@@ -18,7 +61,7 @@ void changeMaker(double cost, double received){
     cout << "That is " << totalCents << " cents." << endl << endl;
     cout << "Please give the customer the following:" << endl;
 
-//divides total cents into integer values equaling dollar and coin amounts until only pennies remain.
+    //divides total cents into integer values equaling dollar and coin amounts until only pennies remain.
 
     int rCents = totalCents;
     int nTwenties = rCents / 2000;
@@ -63,9 +106,11 @@ int buyArray[9];
 int counter = 0;
 int total = 0;
 int totalItems = 0;
-const double TAX = .09;
+double grandTotal = 0;
 
 ifstream myfile;
+    // Have user make menu choice
+    // and then open the corresponding file.
     cout << "Welcome to the Crazy Candy Club!" << endl;
     cout << "Would you like the normal or holiday menu? ";
     cin >> menuChoice;
@@ -80,50 +125,39 @@ ifstream myfile;
     else{
         cout << "File could not be opened.";
     }
+    // Read the valuse from the file into the appropriage arrays
     while(myfile){
         getline(myfile,name);
         myfile >> price;
         myfile.ignore(10,'\n');
 
         if (myfile){
-            cout << left << setw(30) << name << right << setw(3) << "$" << right << setw(6) << price << endl;
-// Following two lines add the price and names to the parallel arrays.
-			priceArray[counter] = price;
-			nameArray[counter] = name;
-			counter++;
+            cout << left << setw(30) << name << right << setw(3)
+            << "$" << right << setw(6) << price << endl;
+        // Following two lines add the price and names to the parallel arrays.
+		  	priceArray[counter] = price;
+			  nameArray[counter] = name;
+			  counter++;
         }
     }
+    // Close the file cleanly
     myfile.close();
 
-	cout << endl << "Place order:" << endl << endl;
+    // take user inputs and display order on screen.
+    placeOrder(counter, nameArray, buyArray, priceArray, totalItems, total);
+    // print summary and total price on screen.
+    orderTotals(total, totalItems, grandTotal);
 
-	for (int i = 0; i < counter; i++){
-		cout << "How many of the " << nameArray[i] << " ($";
-		cout << priceArray[i] << " each): ";
-		cin >> buyArray[i];
-	}
-
-    cout << endl << "Items Ordered : " << endl;
-
-	for (int i = 0; i < counter; i++){
-		cout << right << setw(30) << nameArray[i] << " : x " <<
-		left << setw(2) << buyArray[i] << right << setw(10) << " items = $ " << right << setw(6) << buyArray[i]*priceArray[i] << endl;
-		total += (priceArray[i] * buyArray[i]);
-		totalItems += buyArray[i];
-	}
-
-    cout << fixed << setprecision(2) << "TOTAL:" << right << setw(42) << "$ " << right << setw(6) << total << endl;
-    cout << "TAX (" << TAX*100 << "%):" << right << setw(36) << "$ " << right << setw(6) << total*TAX+.005 << endl;
-    cout << "======================================================" << endl;
-    double grandTotal = total*TAX + total;
-	cout << "GRAND TOTAL:" << right << setw(24) << totalItems << "  items" << right << setw(4) << "$" << right << setw(7) << grandTotal;
-
-	double payment = 0;
+    double payment = 0;
+    // take in payment from customer
     cout << endl << "How much did you receive: $";
     cin >> payment;
+    // determine change amount and display by denomination.
     changeMaker(grandTotal,payment);
 }
 
 int main(){
+    // run menu program
     menuChoice();
+    return 0;
 }
